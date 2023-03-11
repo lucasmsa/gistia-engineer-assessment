@@ -7,7 +7,7 @@ class AssetsParser():
         self.df = pd.read_csv(csv_url)
 
     def fetch_unique_buy_sell_pairs(self) -> int:
-        """Returns a list of unique buy/sell pairs from the dataset
+        """Returns the quantity of unique buy/sell pairs from the dataset
         """
         buy_sell = self.df[[COLUMNS['buy'], COLUMNS['sell']]]
         unique_buy_sell = buy_sell.value_counts(ascending=True).reset_index(name="Unique pairs")
@@ -16,7 +16,7 @@ class AssetsParser():
         return unique_buy_sell_quantity
 
     def fetch_accounts_with_at_least_500_transactions(self) -> int:
-        """Returns a list of accounts with at least 500 transactions
+        """Returns the quantity of accounts with at least 500 transactions
         """
         accounts = self.df[COLUMNS['owner']]
         accounts_transactions = accounts.value_counts(ascending=False).reset_index(name="Number of transactions")
